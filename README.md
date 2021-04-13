@@ -17,7 +17,7 @@ czmq-android-armeabi-v7a-4.2.1.jar
 
 It included:
 
-|file            | version   |
+|Files           | Version   |
 |----------------|-----------|
 |libzmq.so       | 4.3.4.0   |
 |libczmq.so      | 4.2.1     |
@@ -29,7 +29,7 @@ It included:
 * Install app
 
 ```
-adb install AliceDataReaderCloudTest.apk
+adb install ADRUnityIntegrate.apk
 ```
 
 * Uninstall app

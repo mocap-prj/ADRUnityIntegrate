@@ -56,7 +56,6 @@ public class Avatar : MonoBehaviour
     {
         boneMaps[0].localRotation = AliceDataReader.FlipBVHHipRotation(sikBVHData.rootData[0], sikBVHData.rootData[1], sikBVHData.rootData[2], sikBVHData.rootData[3]);
         boneMaps[0].localPosition = AliceDataReader.FlipBVHHipPosition(sikBVHData.rootData[4], sikBVHData.rootData[5], sikBVHData.rootData[6]);
-        boneMaps[0].localScale = new Vector3(sikBVHData.scale, sikBVHData.scale, sikBVHData.scale);
 
         int boneDataCnt = sikBVHData.bWithDisp == 1 ? 7 : 4;
         int boneCnt = (int)SIKHelper.SikBones.MaxBone - 1;
