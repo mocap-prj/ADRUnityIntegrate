@@ -34,8 +34,7 @@ public class DataRecvInstance : MonoBehaviour
         AliceDataReader.BRConnectRemote(CloudServerIP, sendPort, recvPort);
 
         Debug.Log("<color=green>Info: </color> Register callback handler");
-        fn = FrameDataReceivedHandle;
-        Debug.Log(fn);
+        fn = new RealtimeDataCallback(FrameDataReceivedHandle);
         AliceDataReader.BRRegisterRealtimeDataCallback(IntPtr.Zero, fn);
 
         //Debug.Log("<color=red>Error: </color>Initialized");
