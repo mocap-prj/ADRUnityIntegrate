@@ -10,7 +10,7 @@ using ProjectAlice;
 
 public class DataRecvInstance : MonoBehaviour
 {
-    private string remoteIP = "127.0.0.1";
+    private string remoteIP = "40.73.4.61";
     private int sendPort = 3011;
     private int recvPort = 3014;
 
@@ -30,11 +30,6 @@ public class DataRecvInstance : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        remoteIP = ConfigInI.GetValue("remoteIP");
-        Int32.TryParse(ConfigInI.GetValue("sendPort"), out sendPort);
-        Int32.TryParse(ConfigInI.GetValue("recvPort"), out recvPort);
-        Debug.Log("Read config.ini params: remoteIP=" + remoteIP + ", sendPort=" + sendPort + ", recvPort=" + recvPort);
-
         Debug.Log("<color=green>Info: </color> Connect to remote: " + remoteIP + ", send port:" + sendPort + ", recv port:" + recvPort);
         AliceDataReader.BRConnectRemote(remoteIP, sendPort, recvPort);
 
@@ -42,7 +37,6 @@ public class DataRecvInstance : MonoBehaviour
         fn = new RealtimeDataCallback(FrameDataReceivedHandle);
         AliceDataReader.BRRegisterRealtimeDataCallback(IntPtr.Zero, fn);
 
-        //Debug.Log("<color=red>Error: </color>Initialized");
         Debug.Log("<color=green>Info: </color>Initialized");
 
     }

@@ -12,10 +12,16 @@ public static class ConfigInI
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void Init()
     {
-        string path = Directory.GetCurrentDirectory() + "/Assets/config.ini";
+        string path = Application.dataPath + "config.ini";
+        Debug.Log("==================>streamingAssetsPath: " + path);
         if(!File.Exists(path))
         {
+            Debug.Log("==================>Create config.ini");
             File.Create(path);
+            if (!File.Exists(path))
+            {
+                Debug.Log("<color=red>Error: </color>Create config.ini file failed.");
+            }
         }
 
         string contents = File.ReadAllText(path);
