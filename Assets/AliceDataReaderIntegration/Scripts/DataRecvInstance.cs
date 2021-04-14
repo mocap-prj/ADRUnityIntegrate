@@ -10,9 +10,9 @@ using ProjectAlice;
 
 public class DataRecvInstance : MonoBehaviour
 {
-    public string CloudServerIP = "40.73.4.61";
-    public int sendPort = 3011;
-    public int recvPort = 3014;
+    private string remoteIP = "127.0.0.1";
+    private int sendPort = 3011;
+    private int recvPort = 3014;
 
     private GUIStyle guiStyle = null;
     private ProjectAlice.RealtimeDataCallback fn;
@@ -30,8 +30,13 @@ public class DataRecvInstance : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("<color=green>Info: </color> Connect to remote: " + CloudServerIP + ", send port:" + sendPort + ", recv port:" + recvPort);
-        AliceDataReader.BRConnectRemote(CloudServerIP, sendPort, recvPort);
+        remoteIP = ConfigInI.GetValue("remoteIP");
+        Int32.TryParse(ConfigInI.GetValue("sendPort"), out sendPort);
+        Int32.TryParse(ConfigInI.GetValue("recvPort"), out recvPort);
+        Debug.Log("Read config.ini params: remoteIP=" + remoteIP + ", sendPort=" + sendPort + ", recvPort=" + recvPort);
+
+        Debug.Log("<color=green>Info: </color> Connect to remote: " + remoteIP + ", send port:" + sendPort + ", recv port:" + recvPort);
+        AliceDataReader.BRConnectRemote(remoteIP, sendPort, recvPort);
 
         Debug.Log("<color=green>Info: </color> Register callback handler");
         fn = new RealtimeDataCallback(FrameDataReceivedHandle);
@@ -39,6 +44,7 @@ public class DataRecvInstance : MonoBehaviour
 
         //Debug.Log("<color=red>Error: </color>Initialized");
         Debug.Log("<color=green>Info: </color>Initialized");
+
     }
 
     // Update is called once per frame
